@@ -1,10 +1,10 @@
 INCLUDE = -I./include
 CC = c++
 CFLAGS = -std=c++98 -Wall -Werror -Wextra -Wshadow -g
-NAME = PmergeMe
+NAME = PMergeMe
 
 SRCS = main.cpp \
-	srcs/PMergeMe.cpp
+	srcs/PMergeMe.cpp \
 
 OBJ_DIR = obj
 
