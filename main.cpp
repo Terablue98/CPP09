@@ -48,27 +48,28 @@ void printcontainer(const container& ex)
 	}
 	std::cout<<std::endl;
 }
-void parseInput(int argc, char **argv, std::vector<int> &vec, std::deque<int> &deq){
+bool parseInput(int argc, char **argv, std::vector<int> &vec, std::deque<int> &deq){
 	for (int i = 1; i<argc; i++)
 	{
 		std::string arg = argv[i];
 
 		if (!is_positive_num(arg)){
-			std::cout<< "numbers are not positive numbers"<<std::endl;
-			return ;
+			std::cout<< "error: numbers are not positive numbers"<<std::endl;
+			return false;
 		}
 		long num = std::strtol(arg.c_str(), NULL,10);
 		if(num > INT_MAX){
-			std::cout<< "overflow"<<std::endl;
-			return ;
+			std::cout<< "error: overflow"<<std::endl;
+			return false;
 		}
 		if (is_duplicated(vec, static_cast<int>(num))){
-			std::cout << "duplicated inside the container" << std::endl;
-			return ;
+			std::cout << "error: duplicated inside the container" << std::endl;
+			return false;
 		}
 		vec.push_back(static_cast<int>(num));
 		deq.push_back(static_cast<int>(num));
 	}
+	return true;
 }
 
 
@@ -82,7 +83,7 @@ bool is_duplicated(const std::vector<int> &vec, int value){
 
 int main(int argc, char **argv)
 {
-	if (argc > 3000 || argc< 2){
+	if (argc > 3001 || argc< 2){
 		std::cout<<"there is a wrong number of args" << std::endl;
 		return 1;
 	}
@@ -90,18 +91,19 @@ int main(int argc, char **argv)
 	std::vector<int> vec;
 	std::deque<int> deq;
 	try{
-		parseInput(argc, argv, vec, deq);
+		if (!parseInput(argc, argv, vec, deq))
+			return 1;
 		std::cout << "Before: ";
 		printcontainer(vec);
 		
 		clock_t startVec=clock();
-		FJSort(vec);
+		vec = FJSort(vec);
 		clock_t endVec=clock();
 		std::cout << "after for vec: ";
 		printcontainer(vec);
 
 		clock_t startDeq=clock();
-		FJSort(deq);
+		deq = FJSort(deq);
 		clock_t endDeq=clock();
 		std::cout << "after for deq: ";
 		printcontainer(deq);

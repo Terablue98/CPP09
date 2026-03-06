@@ -1,6 +1,6 @@
 INCLUDE = -I./include
 CC = c++
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -Wshadow -g
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -Wshadow
 NAME = PMergeMe
 
 SRCS = main.cpp \
