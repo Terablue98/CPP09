@@ -21,7 +21,7 @@ std::vector<int> JacobsthalSequencing(size_t size);
 
 bool is_duplicated(const std::vector<int> &vec, int value);
 
-void parseInput(int argc, char **argv, std::vector<int> &vec, std::deque<int> &deq);
+bool parseInput(int argc, char **argv, std::vector<int> &vec, std::deque<int> &deq);
 
 template<typename container>
 void printcontainer(const container& ex);

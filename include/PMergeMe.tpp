@@ -44,7 +44,7 @@ container FJSort(container T){
 
 		size_t indice = std::min(static_cast<size_t>(jacob[i]), smalls.size());
 		for(size_t j = indice; j>prev; j--){
-			int x = smalls[i-1];
+			int x = smalls[j-1];
 			typename container::iterator pos = std::lower_bound(big.begin(),big.end(), x); 
 			big.insert(pos, x);
 		}
